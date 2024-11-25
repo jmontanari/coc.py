@@ -232,7 +232,10 @@ class DataContainer(metaclass=DataContainerMetaClass):
             prod_unit = buildings.get(production_building)
             if production_building in ("SiegeWorkshop", "Spell Forge", "Mini Spell Factory",
                                        "Dark Elixir Barrack", "Barrack", "Barrack2"):
-                min_prod_unit_level = json_meta.get("BarrackLevel", [None, ])[0]
+                try:
+                    min_prod_unit_level = json_meta.get("BarrackLevel", [None, ])[0]
+                except IndexError as e:
+                    return
                 # there are some special troops, which have no BarrackLevel attribute
                 if not min_prod_unit_level:
                     laboratory_levels = json_meta.get("LaboratoryLevel")

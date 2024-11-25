@@ -197,7 +197,10 @@ class TroopHolder(DataContainerHolder):
                 lab_to_townhall=lab_to_townhall,
             )
             self.items.append(new_troop)
-            self.item_lookup[(new_troop.name, new_troop._is_home_village)] = new_troop
+            try:
+                self.item_lookup[(new_troop.name, new_troop._is_home_village)] = new_troop
+            except AttributeError as e:
+                pass
             try:
                 super_meta = super_data[supercell_name]
             except KeyError:
