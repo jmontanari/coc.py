@@ -259,9 +259,13 @@ class DataContainer(metaclass=DataContainerMetaClass):
                                 enumerate(prod_unit["TownHallLevel"], start=1)
                                 if i == min_prod_unit_level]
                 # map the min th level to a lab level
-                [first_lab_level] = [lab_level for lab_level, th_level in
-                                     lab_to_townhall.items()
-                                     if th_level in min_th_level]
+                try:
+
+                    [first_lab_level] = [lab_level for lab_level, th_level in
+                                         lab_to_townhall.items()
+                                         if th_level in min_th_level]
+                except ValueError as e:
+                    [first_lab_level] = -1
                 # the first_lab_level is the lowest possible (there are some inconsistencies with siege machines)
                 # To handle them properly, replacing all lab_level lower than first_lab_level with first_lab_level
                 laboratory_levels = []
