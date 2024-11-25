@@ -249,7 +249,7 @@ class DataContainer(metaclass=DataContainerMetaClass):
                                              lab_to_townhall.items()
                                              if th_level in min_th_level]
                     except ValueError as e:
-                        [first_lab_level] = -1
+                        return
                     # the first_lab_level is the lowest possible (there are some inconsistencies with siege machines)
                     # To handle them properly, replacing all lab_level lower than first_lab_level with first_lab_level
                     laboratory_levels = []
@@ -271,7 +271,7 @@ class DataContainer(metaclass=DataContainerMetaClass):
                                          lab_to_townhall.items()
                                          if th_level in min_th_level]
                 except ValueError as e:
-                    [first_lab_level] = -1
+                    return
                 # the first_lab_level is the lowest possible (there are some inconsistencies with siege machines)
                 # To handle them properly, replacing all lab_level lower than first_lab_level with first_lab_level
                 laboratory_levels = []
