@@ -281,8 +281,6 @@ class DataContainer(metaclass=DataContainerMetaClass):
         upgrade_resource_content = json_meta["UpgradeResource"]
         if len(upgrade_resource_content)>0:
             cls.upgrade_resource = Resource(value=upgrade_resource_content[0])
-        else:
-            cls.upgrade_resource = Resource(upgrade_resource_content)
         cls.upgrade_time = try_enum(UnitStat,
                                     [TimeDelta(hours=hours) for hours in
                                      json_meta.get("UpgradeTimeH", [])])
