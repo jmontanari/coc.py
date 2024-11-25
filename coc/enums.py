@@ -172,6 +172,7 @@ ELIXIR_TROOP_ORDER = [
     "Dragon Rider",
     "Electro Titan",
     "Root Rider",
+    "Thrower"
 ]
 
 
