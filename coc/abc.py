@@ -237,14 +237,19 @@ class DataContainer(metaclass=DataContainerMetaClass):
                 if not min_prod_unit_level:
                     laboratory_levels = json_meta.get("LaboratoryLevel")
                 else:
-                    # get the min th level were we can unlock by the required level of the production building
-                    min_th_level = [th for i, th in
-                                    enumerate(prod_unit["TownHallLevel"], start=1)
-                                    if i == min_prod_unit_level]
-                    # map the min th level to a lab level
-                    [first_lab_level] = [lab_level for lab_level, th_level in
-                                         lab_to_townhall.items()
-                                         if th_level in min_th_level]
+
+                    try:
+
+                        # get the min th level were we can unlock by the required level of the production building
+                        min_th_level = [th for i, th in
+                                        enumerate(prod_unit["TownHallLevel"], start=1)
+                                        if i == min_prod_unit_level]
+                        # map the min th level to a lab level
+                        [first_lab_level] = [lab_level for lab_level, th_level in
+                                             lab_to_townhall.items()
+                                             if th_level in min_th_level]
+                    except ValueError as e:
+                        [first_lab_level] = -1
                     # the first_lab_level is the lowest possible (there are some inconsistencies with siege machines)
                     # To handle them properly, replacing all lab_level lower than first_lab_level with first_lab_level
                     laboratory_levels = []
