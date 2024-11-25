@@ -254,12 +254,13 @@ class DataContainer(metaclass=DataContainerMetaClass):
                 min_prod_unit_level = json_meta.get("LaboratoryLevel", [None, ])[0]
                 # there are some special troops, which have no BarrackLevel attribute
 
-                # get the min th level were we can unlock by the required level of the production building
-                min_th_level = [th for i, th in
-                                enumerate(prod_unit["TownHallLevel"], start=1)
-                                if i == min_prod_unit_level]
-                # map the min th level to a lab level
                 try:
+                    # get the min th level were we can unlock by the required level of the production building
+                    min_th_level = [th for i, th in
+                                    enumerate(prod_unit["TownHallLevel"], start=1)
+                                    if i == min_prod_unit_level]
+                    # map the min th level to a lab level
+
 
                     [first_lab_level] = [lab_level for lab_level, th_level in
                                          lab_to_townhall.items()
